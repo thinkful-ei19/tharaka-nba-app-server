@@ -23,7 +23,6 @@ const router = express.Router();
 router.get('/players', (req, res, next) => {
   
   Player.find()
-    .populate('name')
     .then(results => {
       res.json(results);
     })

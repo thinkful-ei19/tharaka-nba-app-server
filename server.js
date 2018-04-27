@@ -2,16 +2,28 @@
 
 const express = require('express');
 const mongoose = require('mongoose'); //connecting to mongodb
+const cors = require('cors');
 // const passport = require('passport'); //auth middleware
-const { PORT, DATABASE_URL } = require('./config');
+const { PORT, DATABASE_URL, CLIENT_ORIGIN } = require('./config');
 
 const playerRouter = require('./routes/players');
+// const userRouter = require('./routes/users');
 
 // Create an Express application
 const app = express();
 
+
+app.use(
+  cors({//Look up what cores does
+    origin: CLIENT_ORIGIN
+  })
+);
+
 // app.use('/api', playerRouter);
+// app.use('/', userRouter);
 app.use('/', playerRouter);
+
+  
 
 // Catch-all 404
 app.use(function (req, res, next) {
