@@ -10,7 +10,8 @@ const playerRouter = require('./routes/players');
 // Create an Express application
 const app = express();
 
-app.use('/api', playerRouter);
+// app.use('/api', playerRouter);
+app.use('/', playerRouter);
 
 // Catch-all 404
 app.use(function (req, res, next) {
