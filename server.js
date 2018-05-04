@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose'); //connecting to mongodb
 const cors = require('cors');
 // const passport = require('passport'); //auth middleware
-const { PORT, DATABASE_URL, MONGODB_URI } = require('./config');
+const { PORT, DATABASE_URL, CLIENT_ORIGIN } = require('./config');
 
 const playerRouter = require('./routes/players');
 const teamRouter = require('./routes/team');
@@ -17,7 +17,7 @@ const app = express();
 
 app.use(
   cors({//Look up what cores does
-    origin: MONGODB_URI
+    origin: CLIENT_ORIGIN
   })
 );
 
