@@ -9,8 +9,12 @@ const playerSchema = new mongoose.Schema({
   imgURL: String
 });
 
-module.exports = mongoose.model('Players', playerSchema);
+playerSchema.set('toObject', {
+  transform: function (doc, ret) {
+    ret.id = ret._id;
+    delete ret._id;
+    delete ret.__v;
+  }
+});
 
-
-//This is to import my json file data into the database
-// mongoimport --uri "mongodb://username:baseball@ds259109.mlab.com:59109/nba-app" --collection players --drop --file /Users/tharakawijekularatne/code/nba-app/client/src/players.json --jsonArray
+module.exports = mongoose.model('Player', playerSchema);

@@ -1,13 +1,15 @@
 'use strict';
 
 const express = require('express');
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose'); //connecting to mongodb
 const cors = require('cors');
 // const passport = require('passport'); //auth middleware
 const { PORT, DATABASE_URL, CLIENT_ORIGIN } = require('./config');
 
 const playerRouter = require('./routes/players');
-// const userRouter = require('./routes/users');
+const teamRouter = require('./routes/team');
+ 
 
 // Create an Express application
 const app = express();
@@ -19,9 +21,10 @@ app.use(
   })
 );
 
-// app.use('/api', playerRouter);
-// app.use('/', userRouter);
-app.use('/', playerRouter);
+app.use(bodyParser.json());//parse the body
+
+app.use('/players', playerRouter);
+app.use('/team', teamRouter);
 
   
 
